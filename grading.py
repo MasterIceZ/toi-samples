@@ -16,8 +16,10 @@ for problem in problems.keys():
         passed = True
     if passed:
         response = "Passed"
-    result.append(problem + ": " + response)
+    result.append("| " + problem + " | " + response + " |")
 
+print("| Problem | Result |")
+print("| --- | --- |")
 print("\n".join(result))
 
 command = "rm result.tmp"
