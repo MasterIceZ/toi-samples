@@ -17,6 +17,9 @@ jobs:
             - name: Compile tasks
               run: |
                 python3 compile_graders.py
+            - name: Grade all tasks
+              run: |
+                python3 grading.py > result.md
             - name: Commit result
               run:
                   |
