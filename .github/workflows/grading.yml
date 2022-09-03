@@ -17,3 +17,16 @@ jobs:
             - name: Compile tasks
               run: |
                 python3 compile_graders.py
+            - name: Commit result
+              run:
+                  |
+                  git config --global user.email "icy-bot@users.noreply.github.com"
+                  git config --global user.name "Borworntat Dendumrongkul"
+                  git add .
+                  git commit -am "Commit result"
+            - name: Push changes
+              if: github.event.commits[0].message != 'Commit result'
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.ACCESS_TOKEN }}
+                  branch: main

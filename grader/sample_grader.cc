@@ -46,8 +46,9 @@ int main(int argc, char* argv[]){
 
 	if(ok == false){
 		cout << "WRONG ANWSWER";
-		exit(1);
 	}
-	cout << "CORRECT";
+	else{
+		cout << "CORRECT";
+	}
 	return 0;
 }
