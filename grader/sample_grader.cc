@@ -42,7 +42,8 @@ int main(int argc, char* argv[]){
 	}
 	// remove files
 	cmd("rm " + fileName + ".exe");
-	cmd("rm *.tmp");
+	cmd("rm lines.tmp");
+	cmd("rm output.tmp");
 
 	if(ok == false){
 		cout << "WRONG ANWSWER";
