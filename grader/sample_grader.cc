@@ -14,22 +14,20 @@ int main(int argc, char* argv[]){
 	int n;
 	// compile code
 	cmd("g++ -std=c++14 -O2 " + filePath + fileName + ".cpp -o " + fileName + ".exe");
-	// copy directory to nearest
-	cmd("cp -r testcase/" + fileName + " testset");
 	// count number of testset
-	cmd("ls testset/" + fileName + " | wc -l > count.tmp");
+	cmd("ls testcase/" + fileName + " | wc -l > count.tmp");
 	freopen("count.tmp", "r", stdin);
 	cin >> n;
 	fclose(stdin);
 	int number_of_input = n / 2, cnt;
 	bool ok = true;
 	for(int i=1; i<=number_of_input; ++i){
-		string inputFile = "testset/" + fileName + "/" + to_string(i) + ".in";
+		string inputFile = "testcase/" + fileName + "/" + to_string(i) + ".in";
 		string outputFile = to_string(i) + ".out";
 		// run case
 		cmd("./" + fileName + ".exe < " + inputFile + " > " + outputFile);
 		// check diff
-		cmd("diff " + outputFile + " testset/" + fileName + "/" + outputFile + " -wb > output.tmp");
+		cmd("diff " + outputFile + " testcase/" + fileName + "/" + outputFile + " -wb > output.tmp");
 		// count number of lines
 		cmd("wc -l output.tmp > lines.tmp");
 		// check
@@ -43,9 +41,8 @@ int main(int argc, char* argv[]){
 		cmd("rm " + outputFile);
 	}
 	// remove files
-	cmd("rm *.exe");
+	cmd("rm " + fileName + ".exe");
 	cmd("rm *.tmp");
-	cmd("rm -rf testset");
 
 	if(ok == false){
 		cout << "WRONG ANWSWER";
